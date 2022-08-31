@@ -22,7 +22,7 @@ namespace IndustrailEquipment.Controllers
 
         // GET: api/Machines
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Machine>>> GetMachines(string name, string serialNumber, int hours, string status)
+        public async Task<ActionResult<IEnumerable<Machine>>> Get(string name, string serialNumber, int hours, string status)
         {
             var query = _context.Machines.AsQueryable();
 
@@ -46,7 +46,7 @@ namespace IndustrailEquipment.Controllers
                 query = query.Where(entry => entry.Status == status);
             }
 
-            return await _context.Machines.ToListAsync();
+            return await query.ToListAsync();
         }
 
         // GET: api/Machines/5
